@@ -12,7 +12,7 @@ app.use(cookieParser());
 connectDB();
 app.use(express.json());
 const corsOptions = {
-  origin:function(a:any,b:any)=>void{
+  origin:function(a:any,b(x:any,y:boolean)=>void){
     b(null,true);
   },
   methods: "GET,POST,PUT,DELETE",
