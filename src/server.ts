@@ -1,0 +1,28 @@
+const express = require("express");
+const app = express();
+const userRoutes = require("./routes/users.js");
+const settingsRoutes = require("./routes/settings.js");
+const writerRoutes = require("./routes/writer.js");
+const readerRoytes = require("./routes/reader.js");
+const cors = require("cors");
+const connectDB = require("./config/db");
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+connectDB();
+app.use(express.json());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+app.use("/", userRoutes);
+app.use("/settings", settingsRoutes);
+app.use("/writer", writerRoutes);
+app.use("/reader", readerRoytes);
+app.listen(8000, () => {
+  console.log("server is running on port 8000");
+});

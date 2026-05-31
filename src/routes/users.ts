@@ -1,0 +1,16 @@
+const express = require("express");
+const router = express.Router();
+const { register } = require("../controllers/users.js");
+const { login } = require("../controllers/users.js");
+const { refreshToken } = require("../controllers/users.js");
+const { roleCheck } = require("../controllers/users.js");
+const { logout } = require("../controllers/users.js");
+const { name } = require("../controllers/users.js");
+const authMiddleware = require("../middleware/authmiddleware.js");
+router.post("/register", register);
+router.post("/login", login);
+router.get("/refreshtoken", authMiddleware, refreshToken);
+router.get("/roleCheck", authMiddleware, roleCheck);
+router.get("/logout", authMiddleware, logout);
+router.get("/name", authMiddleware, name);
+module.exports = router;
