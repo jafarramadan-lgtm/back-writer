@@ -12,7 +12,7 @@ app.use(cookieParser());
 connectDB();
 app.use(express.json());
 const corsOptions = {
-  origin: function (origin,callback){
+  origin: function (origin:string | undefined,callback:(err:Error |null,allow?:boolean)=>void){
     callback(null,true);
   },
   methods: "GET,POST,PUT,DELETE",
