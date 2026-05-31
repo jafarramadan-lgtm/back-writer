@@ -11,15 +11,18 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 connectDB();
 app.use(express.json());
-const corsOptions = {
-  origin:function(a:any,b:(x:any,y:boolean)=>void){
-  b(null,true)
-},
-  methods: "GET,POST,PUT,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin:function(a:any,b:(x:any,y:boolean)=>void){
+//   b(null,true)
+// },
+//   methods: "GET,POST,PUT,DELETE",
+//   allowedHeaders: "Content-Type,Authorization",
+//   credentials: true,
+// };
+app.use(cors({
+  origin:"https://writer-mocha.vercel.app",
+  credentials:true
+}));
 
 app.use("/", userRoutes);
 app.use("/settings", settingsRoutes);
