@@ -32,7 +32,7 @@ exports.register = async (req: Request, res: Response) => {
     process.env.JWT_SECRET,
     { expiresIn: "1h" },
   );
-  res.cookie("token", token, { httpOnly: true });
+  res.cookie("token", token, { httpOnly: true,secure:true,sameSite:"none",maxAge:24*60*60*1000, });
   res
     .status(201)
     .json({ message: "User registered successfully", role: newUser.role });
@@ -51,7 +51,7 @@ exports.login = async (req: Request, res: Response) => {
     process.env.JWT_SECRET,
     { expiresIn: "1h" },
   );
-  res.cookie("token", token, { httpOnly: true });
+  res.cookie("token", token, { httpOnly: true,secure:true,sameSite:"none",maxAge:24*60*60*1000, });
   res
     .status(200)
     .json({ message: "User logged in successfully", role: user.role });
@@ -65,7 +65,7 @@ exports.refreshToken = (req: Request | any, res: Response) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" },
     );
-    res.cookie("token", newToken, { httpOnly: true });
+    res.cookie("token", newToken, { httpOnly: true,secure:true,sameSite:"none",maxAge:24*60*60*1000, });
     res
       .status(200)
       .json({ message: "Token refreshed successfully", role: role });
