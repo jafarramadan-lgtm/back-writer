@@ -12,9 +12,7 @@ app.use(cookieParser());
 connectDB();
 app.use(express.json());
 const corsOptions = {
-  origin: function (origin:string | undefined,callback:(err:Error |null,allow?:boolean)=>void){
-    callback(null,true);
-  },
+  origin: "https://writer-6vsof4ire-jafars-projects-88d5df6c.vercel.app/",
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
