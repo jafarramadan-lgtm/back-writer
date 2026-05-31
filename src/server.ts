@@ -12,7 +12,9 @@ app.use(cookieParser());
 connectDB();
 app.use(express.json());
 const corsOptions = {
-  origin: "https://writer-mocha.vercel.app",
+  origin:function(a:any,b:any)=>void{
+    b(null,true);
+  },
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
