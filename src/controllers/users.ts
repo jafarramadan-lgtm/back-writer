@@ -65,7 +65,7 @@ exports.refreshToken = (req: Request | any, res: Response) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" },
     );
-  res.cookie("token", token, { httpOnly: true,secure:true,sameSite:"none",domain:"writer-mocha.vercel.app",maxAge:24*60*60*1000, });
+  res.cookie("token", newToken, { httpOnly: true,secure:true,sameSite:"none",domain:"writer-mocha.vercel.app",maxAge:24*60*60*1000, });
     res
       .status(200)
       .json({ message: "Token refreshed successfully", role: role });
